@@ -31,6 +31,28 @@ const randomlyAssignMines = (board, boardSize, mineCount) => {
   return board;
 };
 
+const getNeighbors = id => {
+  let row = parseInt(id[0]);
+  let column = parseInt(id[1]);
+  let neighbors = [];
+  neighbors.push(row - 1 + "" + (column - 1));
+  neighbors.push(row - 1 + "" + column);
+  neighbors.push(row - 1 + "" + (column + 1));
+  neighbors.push(row + "" + (column - 1));
+  neighbors.push(row + "" + (column + 1));
+  neighbors.push(row + 1 + "" + (column - 1));
+  neighbors.push(row + 1 + "" + column);
+  neighbors.push(row + 1 + "" + (column + 1));
+
+  for (let i = 0; i < neighbors.length; i++) {
+    if (neighbors[i].length > 2) {
+      neighbors.splice(i, 1);
+      i--;
+    }
+  }
+
+  return neighbors;
+};
 function Board(boardSize, mineCount) {
   board = {};
   for (let row = 0; row < boardSize; row++) {
