@@ -53,6 +53,16 @@ const getNeighbors = id => {
 
   return neighbors;
 };
+
+const isMined = (board, row, column) => {
+  const cell = board[row + "" + column];
+  let mined = 0;
+  if (typeof cell !== "undefined") {
+    mined = cell.mined ? 1 : 0;
+  }
+  return mined;
+};
+
 function Board(boardSize, mineCount) {
   board = {};
   for (let row = 0; row < boardSize; row++) {
